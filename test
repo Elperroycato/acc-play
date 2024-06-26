@@ -1,0 +1,32 @@
+try {
+// Only run code when its the first page of the session
+if (!sessionStorage.getItem('firstPage')) {
+    sessionStorage.setItem('firstPage', 'true');
+}
+
+//Store document.location.search in a variable
+const myKeysValues = document.location.search;
+
+// Store Keys & Values in sessionStorage
+console.log("keys & Values", myKeysValues)
+
+//Log parameters separately
+const urlParams = new URLSearchParams(myKeysValues);
+
+// get all params in URL
+const params = urlParams.keys()
+
+//log all params for further processing
+console.log("params:", params)
+
+// Show referrersource for Google & Doubleclick
+if (document.location.urlParams.includes(GCLID)) {
+    sessionStorage.setItem('referrerSource', 'Google');
+}
+else if (document.location.urlParams.include(DCLID)) {
+    sessionStorage.setItem('referrerSource', Doubleclick);
+} 
+}
+catch (error) { 
+    console.error('Error occurred:', error.message);
+}
